@@ -1,7 +1,7 @@
 #ifndef _ESTRUTURAS_H_
 #define _ESTRUTURAS_H_
 
-//Definições das estruturas utilizadas
+//DefiniÃ§Ãµes das estruturas utilizadas
 
 #define NOCURSOR  0
 #define MAXCHAR   60
@@ -35,7 +35,7 @@ typedef struct struct_jogador_escore //Escores dos jogadores
     float escore;
 } jogador_escore_t;
 
-typedef struct stPosFinal //Posições finais para os cubos
+typedef struct stPosFinal //PosiÃ§Ãµes finais para os cubos
 {
     int posFinalX;
     int posFinalY;
