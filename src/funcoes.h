@@ -1,7 +1,7 @@
 #ifndef _FUNCOES_H_
 #define _FUNCOES_H_
 
-//Funções utilizadas
+//FunÃ§Ãµes utilizadas
 
 #include "estruturas.h"
 
