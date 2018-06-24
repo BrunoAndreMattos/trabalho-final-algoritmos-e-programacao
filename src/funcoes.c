@@ -10,13 +10,13 @@
 #include <conio.h>
 #include <conio2.h>
 
-void ordenaJogadores(jogador_escore_t top10[], int *numeroJogadores) //Lê os highscores salvos e os ordena
+void ordenaJogadores(jogador_escore_t top10[], int *numeroJogadores) //LÃª os highscores salvos e os ordena
 {
     FILE *arq;
     jogador_escore_t buffer, temp[50], aux;
     int cont=0, i, j;
 
-    if ( !(arq = fopen("highscore.bin", "r+b")) ) //Abre o arquivo binário de highscores para leitura
+    if ( !(arq = fopen("highscore.bin", "r+b")) ) //Abre o arquivo binÃ¡rio de highscores para leitura
     {
         printf("Erro de abertura do arquivo\n");
     }
@@ -38,7 +38,7 @@ void ordenaJogadores(jogador_escore_t top10[], int *numeroJogadores) //Lê os hig
         fclose(arq);
     }
 
-    *numeroJogadores = cont; //Armazena o número de escores lidos em variável
+    *numeroJogadores = cont; //Armazena o nÃºmero de escores lidos em variÃ¡vel
 
     for (i=1; i<cont; i++)
     {
@@ -70,7 +70,7 @@ void ordenaJogadores(jogador_escore_t top10[], int *numeroJogadores) //Lê os hig
 
 }
 
-void leNome(char nomeDoJogador[]) //Lê o nome do jogador atual
+void leNome(char nomeDoJogador[]) //LÃª o nome do jogador atual
 {
     printf("\nInforme o nome do jogador: ");
     fflush(stdin);
@@ -78,7 +78,7 @@ void leNome(char nomeDoJogador[]) //Lê o nome do jogador atual
     nomeDoJogador[strlen(nomeDoJogador) - 1] = '\0'; //Limpa a quebra de linha no fim da string
 }
 
-void leMapa (char nivel[MAXLIN][MAXCOL], int lvl) //Lê o mapa do jogo de acordo com o nível indicado
+void leMapa (char nivel[MAXLIN][MAXCOL], int lvl) //LÃª o mapa do jogo de acordo com o nÃ­vel indicado
 {
     char buffer;
     FILE* arq;
@@ -86,17 +86,17 @@ void leMapa (char nivel[MAXLIN][MAXCOL], int lvl) //Lê o mapa do jogo de acordo 
 
     if(lvl == 1)
     {
-        arq = fopen("nivel1.txt", "r+"); //Abre o arquivo com o mapa do nível 1
+        arq = fopen("nivel1.txt", "r+"); //Abre o arquivo com o mapa do nÃ­vel 1
     }
     else
     {
         if(lvl == 2)
         {
-            arq = fopen("nivel2.txt", "r+"); //Abre o arquivo com o mapa do nível 2
+            arq = fopen("nivel2.txt", "r+"); //Abre o arquivo com o mapa do nÃ­vel 2
         }
         else
         {
-            arq = fopen("nivel3.txt", "r+"); //Abre o arquivo com o mapa do nível 3
+            arq = fopen("nivel3.txt", "r+"); //Abre o arquivo com o mapa do nÃ­vel 3
         }
     }
 
@@ -110,11 +110,11 @@ void leMapa (char nivel[MAXLIN][MAXCOL], int lvl) //Lê o mapa do jogo de acordo 
         {
             for(j=0; j<MAXCOL; j++)
             {
-                buffer = getc(arq); //Lê caractere por caractere do mapa
+                buffer = getc(arq); //LÃª caractere por caractere do mapa
                 nivel[i][j] = buffer;
             }
         }
-        fclose(arq); //Fecha o .txt do nível
+        fclose(arq); //Fecha o .txt do nÃ­vel
     }
 
     for(i=0; i<MAXLIN; i++)
@@ -123,7 +123,7 @@ void leMapa (char nivel[MAXLIN][MAXCOL], int lvl) //Lê o mapa do jogo de acordo 
     }
 }
 
-int sorteiaPosicoes(char nivel[MAXLIN][MAXCOL], POSFINAL_T posicoesFinais[MAXCUBOS]) //Sorteia as posições finais para os blocos móveis
+int sorteiaPosicoes(char nivel[MAXLIN][MAXCOL], POSFINAL_T posicoesFinais[MAXCUBOS]) //Sorteia as posiÃ§Ãµes finais para os blocos mÃ³veis
 {
     int n, pos1, pos2;
     int i, j;
@@ -136,7 +136,7 @@ int sorteiaPosicoes(char nivel[MAXLIN][MAXCOL], POSFINAL_T posicoesFinais[MAXCUB
         {
             if(nivel[i][j] == '2')
             {
-                n++; //Conta o número de posições que precisam ser sorteadas
+                n++; //Conta o nÃºmero de posiÃ§Ãµes que precisam ser sorteadas
             }
         }
     }
@@ -146,11 +146,11 @@ int sorteiaPosicoes(char nivel[MAXLIN][MAXCOL], POSFINAL_T posicoesFinais[MAXCUB
         do
         {
             pos1 = 1 + rand()%10;
-            pos2 = 1 + rand()%25; //Gera duas coordenadas aleatórias
+            pos2 = 1 + rand()%25; //Gera duas coordenadas aleatÃ³rias
         } while(nivel[pos1][pos2] != '0');
-        //Verifica se as coordenadas sorteadas condizem com a área de movimento do mapa
+        //Verifica se as coordenadas sorteadas condizem com a Ã¡rea de movimento do mapa
 
-        posicoesFinais[i].posFinalY = pos1; //Adiciona as coordenadas ao vetor de posições finais
+        posicoesFinais[i].posFinalY = pos1; //Adiciona as coordenadas ao vetor de posiÃ§Ãµes finais
         posicoesFinais[i].posFinalX = pos2;
     }
     return n;
@@ -190,7 +190,7 @@ void imprimirMapa(char mapa[MAXLIN*2][MAXCOL*2]) //Imprime o mapa ampliado
            case FUNDO:
            case INVALIDO:
             textcolor(BLACK);
-            printf("%c", mapa[i][j]); //Imprime o fundo da área de movimento (caractere '0') na cor preta
+            printf("%c", mapa[i][j]); //Imprime o fundo da Ã¡rea de movimento (caractere '0') na cor preta
             break;
            case JOGADOR:
             textcolor(LIGHTBLUE);
@@ -198,7 +198,7 @@ void imprimirMapa(char mapa[MAXLIN*2][MAXCOL*2]) //Imprime o mapa ampliado
             break;
            case BLOCO:
             textcolor(LIGHTRED);
-            printf("%c", mapa[i][j]); //Imprime os blocos móveis (caractere '2') na cor vermelho
+            printf("%c", mapa[i][j]); //Imprime os blocos mÃ³veis (caractere '2') na cor vermelho
             break;
            }
         }
@@ -223,7 +223,7 @@ void salvaEstadoAtualTXT(char mapa[MAXLIN+MAXLIN][MAXCOL+MAXCOL], int tempo, int
 {
     //Salva tempo, movimentos e mapa do momento em arquivo de
     //texto com o  nome do jogador de acordo com a disponibilidade
-    //Recebe matriz do mapa atualizado, variável onde é salvo o tempo e o número de movimentos
+    //Recebe matriz do mapa atualizado, variÃ¡vel onde Ã© salvo o tempo e o nÃºmero de movimentos
     char nomeJogador[MAXCHAR+1], nomeTestado[MAXCHAR+3];
     FILE *arq;
     int i, j;
@@ -236,14 +236,14 @@ void salvaEstadoAtualTXT(char mapa[MAXLIN+MAXLIN][MAXCOL+MAXCOL], int tempo, int
     nomeJogador[strlen(nomeJogador)-1] = '\0';
 
     //Verifica se existe arquivo com os nomes testados
-    //e salva com o primeiro possível
+    //e salva com o primeiro possÃ­vel
 
     strcpy(nomeTestado, nomeJogador);
     strcat(nomeTestado, ".txt");
 
     arq = fopen(nomeTestado, "r");
 
-    while(arq != NULL) //Testa se o arquivo com o nome dado já existe
+    while(arq != NULL) //Testa se o arquivo com o nome dado jÃ¡ existe
     {
         fclose(arq);
 
@@ -253,7 +253,7 @@ void salvaEstadoAtualTXT(char mapa[MAXLIN+MAXLIN][MAXCOL+MAXCOL], int tempo, int
         strcpy(nomeTestado, nomeJogador);
         strcat(nomeTestado, ".txt");
 
-        //Acrescenta um índice ao fim do nome caso já exista
+        //Acrescenta um Ã­ndice ao fim do nome caso jÃ¡ exista
         cat++;
 
         arq = fopen(nomeTestado, "r");
@@ -321,7 +321,7 @@ void salvaEscore(char *nome, float escore) //Salva o escore do jogo
     strcpy(jogador.nome, nome); //Copia o nome recebido para a estrutura a ser salva
     jogador.escore = escore;
 
-    if (!(arq = fopen("highscore.bin", "r+b"))) //Abre o arquivo binário de highscores no modo de leitura
+    if (!(arq = fopen("highscore.bin", "r+b"))) //Abre o arquivo binÃ¡rio de highscores no modo de leitura
     {
         //printf("Erro 4 de leitura do arquivo\n");
     }
@@ -331,10 +331,10 @@ void salvaEscore(char *nome, float escore) //Salva o escore do jogo
         {
             if ((fread(&buffer, sizeof(jogador_escore_t), 1, arq)) == 1)
             {
-                if (!(strcmp(buffer.nome, jogador.nome))) //Verifica se já existe um jogador salvo com aquele nome
+                if (!(strcmp(buffer.nome, jogador.nome))) //Verifica se jÃ¡ existe um jogador salvo com aquele nome
                 {
                     achou = 1;
-                    if (jogador.escore > buffer.escore) //Se o escore atual for maior que o escore já salvo desse jogador
+                    if (jogador.escore > buffer.escore) //Se o escore atual for maior que o escore jÃ¡ salvo desse jogador
                     { //Salva o escore novo
                         fclose(arq);
                         escreveHighscore (jogador, lidos);
@@ -357,7 +357,7 @@ void salvaEscore(char *nome, float escore) //Salva o escore do jogo
         }
         fclose(arq);
     }
-    if (!achou) //Caso não tenha encontrado nenhum jogador com aquele nome
+    if (!achou) //Caso nÃ£o tenha encontrado nenhum jogador com aquele nome
     {
         if ( !(arq = fopen("highscore.bin", "a+b") ) )
         {
@@ -374,7 +374,7 @@ void salvaEscore(char *nome, float escore) //Salva o escore do jogo
     }
 }
 
-void pausaBin(char mapa[MAXLIN*2][MAXCOL*2], jogador_t jogador, float escore) //Salva um arquivo binário para a pausa do jogo
+void pausaBin(char mapa[MAXLIN*2][MAXCOL*2], jogador_t jogador, float escore) //Salva um arquivo binÃ¡rio para a pausa do jogo
 {
     //Salva tempo, movimentos e mapa em arquivo pausa.bin
     //Recebe matriz com o mapa no momento e estrututa do jogador atualizada
@@ -485,14 +485,14 @@ void menuInicial(char opcao, jogador_t jogadorAtual, jogador_escore_t top10[10],
         case 'n':
         case 'N':
             clrscr();
-            leNome(jogadorAtual.nome); //Lê o nome do jogador
+            leNome(jogadorAtual.nome); //LÃª o nome do jogador
             clrscr();
             novoJogo(1, jogadorAtual, 1); //Inicia um jogo novo
             break;
         case 'e':
         case 'E':
             ordenaJogadores(top10, &n);
-            imprimeHighscore(top10, n); //Lê os 10 maiores escores registrados e os imprime na tela
+            imprimeHighscore(top10, n); //LÃª os 10 maiores escores registrados e os imprime na tela
             break;
         case 's':
         case 'S':
@@ -500,7 +500,7 @@ void menuInicial(char opcao, jogador_t jogadorAtual, jogador_escore_t top10[10],
             remove("pausa.bin"); //Deleta o arquivo de pausa
             clrscr();
             printf("\n  Ate logo!\n");
-            exit(0); //Termina a execução do programa
+            exit(0); //Termina a execuÃ§Ã£o do programa
             break;
         default:
             clrscr();
@@ -509,12 +509,12 @@ void menuInicial(char opcao, jogador_t jogadorAtual, jogador_escore_t top10[10],
 
         printf("\n\nPressione 'M' para retornar ao menu.\n");
 
-        getch(); //Espera até que uma nova tecla seja pressionada
+        getch(); //Espera atÃ© que uma nova tecla seja pressionada
 
     } while(opcao != 'q' && opcao != 'Q');
 }
 
-void imprimeMenu(int *tab, jogador_t jogadorAtual, char mapa[MAXLIN*2][MAXCOL*2], int *pause) //Imprime e coordena as funções do menu durante o jogo
+void imprimeMenu(int *tab, jogador_t jogadorAtual, char mapa[MAXLIN*2][MAXCOL*2], int *pause) //Imprime e coordena as funÃ§Ãµes do menu durante o jogo
 {
     char letra;
     jogador_escore_t top10[10];
@@ -567,7 +567,7 @@ void imprimeMenu(int *tab, jogador_t jogadorAtual, char mapa[MAXLIN*2][MAXCOL*2]
                     case 'E':
                     case 'e':
                         ordenaJogadores(top10, &n);
-                        imprimeHighscore(top10, n); //Lê os 10 maiores escores registrados e os imprime na tela
+                        imprimeHighscore(top10, n); //LÃª os 10 maiores escores registrados e os imprime na tela
                         break;
                     case 'Q':
                     case 'q':
@@ -575,7 +575,7 @@ void imprimeMenu(int *tab, jogador_t jogadorAtual, char mapa[MAXLIN*2][MAXCOL*2]
                         remove("pausa.bin"); //Deleta o arquivo de pausa
                         clrscr();
                         printf("Ate logo!\n");
-                        exit(0); //Termina a execução do programa
+                        exit(0); //Termina a execuÃ§Ã£o do programa
                         break;
                     default:
                     break;
@@ -587,7 +587,7 @@ void imprimeMenu(int *tab, jogador_t jogadorAtual, char mapa[MAXLIN*2][MAXCOL*2]
 }
 
 float imprimeInfo(int movimentos, int totalCubos, int cubosFixos, char nomeDoJogador[MAXCHAR], int nivelAtual, float tempoPassado, float tempo, float *acumuladorEscore, int *verificaFim)
-{ //Imprime as informações do jogo atual
+{ //Imprime as informaÃ§Ãµes do jogo atual
     float pontuacao;
 
     if (*verificaFim == 1)
@@ -597,14 +597,14 @@ float imprimeInfo(int movimentos, int totalCubos, int cubosFixos, char nomeDoJog
     }
     else
     {
-        pontuacao = calculaEscore(nivelAtual, movimentos, tempoPassado); //Calcula a pontuação do jogador
+        pontuacao = calculaEscore(nivelAtual, movimentos, tempoPassado); //Calcula a pontuaÃ§Ã£o do jogador
     }
 
-    printf("Nivel: %d  ", nivelAtual); //Mostra nível em que o jogador se encontra
-    printf("%s: %.2f  ", nomeDoJogador, pontuacao); //Mostra nome do jogador e sua pontuação
+    printf("Nivel: %d  ", nivelAtual); //Mostra nÃ­vel em que o jogador se encontra
+    printf("%s: %.2f  ", nomeDoJogador, pontuacao); //Mostra nome do jogador e sua pontuaÃ§Ã£o
     printf("Tempo: %.0fs  ", tempo); //Mostra o tempo restante de jogo
-    printf("Movimentos: %d  ", movimentos); //Mostra quantos movimentos já foram feitos
-    printf("Cubos: %d/%d", cubosFixos, totalCubos); //Mostra quantos cubos já foram fixados e quantos cubos há no total
+    printf("Movimentos: %d  ", movimentos); //Mostra quantos movimentos jÃ¡ foram feitos
+    printf("Cubos: %d/%d", cubosFixos, totalCubos); //Mostra quantos cubos jÃ¡ foram fixados e quantos cubos hÃ¡ no total
 
     return pontuacao;
 }
@@ -629,23 +629,23 @@ int movimento(char input, char nivel[MAXLIN][MAXCOL], int *andou, POSFINAL_T pos
                         if (nivel[i][j] == JOGADOR)
                         {
                             if ((nivel[i][j-1] != PAREDE) && (*andou != 1))
-                            { //Se o jogador ainda não tiver andado e o bloco à esquerda não for uma parede
+                            { //Se o jogador ainda nÃ£o tiver andado e o bloco Ã  esquerda nÃ£o for uma parede
                                 if((nivel[i][j-1] == BLOCO) && (nivel[i][j-2] != PAREDE) && (nivel[i][j-2] != BLOCO))
-                                { //Caso um bloco móvel tenha sido movimentado
+                                { //Caso um bloco mÃ³vel tenha sido movimentado
                                     nivel[i][j] = FUNDO;
                                     nivel[i][j-2] = BLOCO;
                                     nivel[i][j-1] = JOGADOR;
                                     for(cont = 0; cont < nroCubos; cont++)
                                     {
                                         if((i == posicoesFinais[cont].posFinalY) && (j-2 == posicoesFinais[cont].posFinalX))
-                                        { //Caso o bloco móvel tenha sido posicionado numa posição final
+                                        { //Caso o bloco mÃ³vel tenha sido posicionado numa posiÃ§Ã£o final
                                             cubosFixos++;
                                             nivel[i][j-2] = PAREDE; //Incrementa a contagem de cubos fixos e o transforma em uma parede
                                         }
                                     }
                                 }
                                 else
-                                { //Caso um bloco não tenha sido movimentado
+                                { //Caso um bloco nÃ£o tenha sido movimentado
                                     if(nivel[i][j-1] != BLOCO)
                                     {
                                         nivel[i][j] = FUNDO;
@@ -670,9 +670,9 @@ int movimento(char input, char nivel[MAXLIN][MAXCOL], int *andou, POSFINAL_T pos
                         if (nivel[i][j] == JOGADOR)
                         {
                             if ((nivel[i-1][j] != PAREDE) && (*andou != 1))
-                            { //Se o jogador ainda não tiver andado e o bloco acima não for uma parede
+                            { //Se o jogador ainda nÃ£o tiver andado e o bloco acima nÃ£o for uma parede
                                 if((nivel[i-1][j] == BLOCO) && (nivel[i-2][j] != PAREDE) && (nivel[i-2][j] != BLOCO))
-                                { //Caso um bloco móvel tenha sido movimentado
+                                { //Caso um bloco mÃ³vel tenha sido movimentado
                                     nivel[i][j] = FUNDO;
                                     nivel[i-2][j] = BLOCO;
                                     nivel[i-1][j] = JOGADOR;
@@ -686,7 +686,7 @@ int movimento(char input, char nivel[MAXLIN][MAXCOL], int *andou, POSFINAL_T pos
                                     }
                                 }
                                 else
-                                { //Caso um bloco móvel não tenha sido movimentado
+                                { //Caso um bloco mÃ³vel nÃ£o tenha sido movimentado
                                     if(nivel[i-1][j] != BLOCO)
                                     {
                                         nivel[i][j] = FUNDO;
@@ -711,9 +711,9 @@ int movimento(char input, char nivel[MAXLIN][MAXCOL], int *andou, POSFINAL_T pos
                         if (nivel[i][j] == JOGADOR)
                         {
                             if ((nivel[i][j+1] != PAREDE) && (*andou != 1))
-                            { //Se o jogador ainda não tiver andado e o bloco à direita não for uma parede
+                            { //Se o jogador ainda nÃ£o tiver andado e o bloco Ã  direita nÃ£o for uma parede
                                 if((nivel[i][j+1] == BLOCO) && (nivel[i][j+2] != PAREDE) && (nivel[i][j+2] != BLOCO))
-                                { //Caso um bloco móvel tenha sido movimentado
+                                { //Caso um bloco mÃ³vel tenha sido movimentado
                                     nivel[i][j] = FUNDO;
                                     nivel[i][j+2] = BLOCO;
                                     nivel[i][j+1] = JOGADOR;
@@ -727,7 +727,7 @@ int movimento(char input, char nivel[MAXLIN][MAXCOL], int *andou, POSFINAL_T pos
                                     }
                                 }
                                 else
-                                { //Caso um bloco móvel não tenha sido movimentado
+                                { //Caso um bloco mÃ³vel nÃ£o tenha sido movimentado
                                     if(nivel[i][j+1] != BLOCO)
                                     {
                                         nivel[i][j] = FUNDO;
@@ -752,9 +752,9 @@ int movimento(char input, char nivel[MAXLIN][MAXCOL], int *andou, POSFINAL_T pos
                         if (nivel[i][j] == JOGADOR)
                         {
                             if ((nivel[i+1][j] != PAREDE) && (*andou != 1))
-                            { //Se o jogador ainda não tiver andado e o bloco abaixo não for uma parede
+                            { //Se o jogador ainda nÃ£o tiver andado e o bloco abaixo nÃ£o for uma parede
                                 if((nivel[i+1][j] == BLOCO) && (nivel[i+2][j] != PAREDE) && (nivel[i+2][j] != BLOCO))
-                                { //Caso um bloco móvel tenha sido movimentado
+                                { //Caso um bloco mÃ³vel tenha sido movimentado
                                     nivel[i][j] = FUNDO;
                                     nivel[i+2][j] = BLOCO;
                                     nivel[i+1][j] = JOGADOR;
@@ -768,7 +768,7 @@ int movimento(char input, char nivel[MAXLIN][MAXCOL], int *andou, POSFINAL_T pos
                                     }
                                 }
                                 else
-                                { //Caso um bloco móvel não tenha sido movimentado
+                                { //Caso um bloco mÃ³vel nÃ£o tenha sido movimentado
                                     if(nivel[i+1][j] != BLOCO)
                                     {
                                         nivel[i][j] = FUNDO;
@@ -822,7 +822,7 @@ int setGameOver (char nivel[MAXLIN][MAXCOL])
     return isOver;
 }
 
-void novoJogo(int level, jogador_t jogadorAtual, int nivelAtual) //Inicia um novo nível
+void novoJogo(int level, jogador_t jogadorAtual, int nivelAtual) //Inicia um novo nÃ­vel
 {
     char nivel[MAXLIN][MAXCOL];
     char mapa[MAXLIN*2][MAXCOL*2];
@@ -859,13 +859,13 @@ void novoJogo(int level, jogador_t jogadorAtual, int nivelAtual) //Inicia um nov
 
         if(pause == 0)
         {
-            tempoElapsed = (clock() - tempoIncial) / 1000.0; //Calcula o tempo que já passou (segundos)
+            tempoElapsed = (clock() - tempoIncial) / 1000.0; //Calcula o tempo que jÃ¡ passou (segundos)
             tempoLeft = tempoLimite - tempoElapsed; //Calcula o tempo restante de jogo
         }
 
         printf("\n");
         jogadorAtual.pontuacao = imprimeInfo(movimentos, nroCubos, cubosFixos, jogadorAtual.nome, nivelAtual, tempoElapsed, tempoLeft, &acumuladorEscore, &verificaFim);
-        //Calcula a pontuação do jogador atual
+        //Calcula a pontuaÃ§Ã£o do jogador atual
         printf("\n");
 
         ampliarMapa(nivel, mapa);
@@ -901,10 +901,10 @@ void novoJogo(int level, jogador_t jogadorAtual, int nivelAtual) //Inicia um nov
         if(andou == 1)
         {
             movimentos++; //Incrementa a quantidade de movimentos dados
-            jogadorAtual.movimentos = movimentos; //Armazena o número de movimentos na estrutura do jogador atual
+            jogadorAtual.movimentos = movimentos; //Armazena o nÃºmero de movimentos na estrutura do jogador atual
         }
 
-        if(cubosFixos == nroCubos) //Verifica se todos os cubos móveis já foram fixados
+        if(cubosFixos == nroCubos) //Verifica se todos os cubos mÃ³veis jÃ¡ foram fixados
         {
             condicaoDeTermino = 1;
             verificaFim = 1;
@@ -915,7 +915,7 @@ void novoJogo(int level, jogador_t jogadorAtual, int nivelAtual) //Inicia um nov
             condicaoDeTermino = 3;
         }
 
-        if (setGameOver(nivel) == 1) //Se um dos blocos móveis não puder ser colocado em alguma posição final
+        if (setGameOver(nivel) == 1) //Se um dos blocos mÃ³veis nÃ£o puder ser colocado em alguma posiÃ§Ã£o final
         {
             condicaoDeTermino = 2;
         }
@@ -935,21 +935,21 @@ void novoJogo(int level, jogador_t jogadorAtual, int nivelAtual) //Inicia um nov
         clrscr();
     } while (condicaoDeTermino == 0);
 
-    if(condicaoDeTermino == 1) //Caso o nível tenha sido vencido
+    if(condicaoDeTermino == 1) //Caso o nÃ­vel tenha sido vencido
     {
-        levelAtual++; //Incrementa o nível atual
-        if(levelAtual < 4) //Se o nível finalizado não tiver sido o último
+        levelAtual++; //Incrementa o nÃ­vel atual
+        if(levelAtual < 4) //Se o nÃ­vel finalizado nÃ£o tiver sido o Ãºltimo
         {
-            novoJogo(levelAtual, jogadorAtual, levelAtual); //Inicia o próximo nível
+            novoJogo(levelAtual, jogadorAtual, levelAtual); //Inicia o prÃ³ximo nÃ­vel
         }
-        else //Caso todos os níveis estejam completos
+        else //Caso todos os nÃ­veis estejam completos
         {
             salvaEscore(jogadorAtual.nome, jogadorAtual.pontuacao); //Salva escore do jogo
             printf("\n  JOGO VENCIDO!\n\n");
-            printf("  Total de pontos: %.2f", acumuladorEscore); //Exibe a pontuação total
+            printf("  Total de pontos: %.2f", acumuladorEscore); //Exibe a pontuaÃ§Ã£o total
         }
     }
-    else if(condicaoDeTermino == 2) //Caso algum bloco móvel não possa mais ser colocado em uma posição final
+    else if(condicaoDeTermino == 2) //Caso algum bloco mÃ³vel nÃ£o possa mais ser colocado em uma posiÃ§Ã£o final
     {
         salvaEscore(jogadorAtual.nome, jogadorAtual.pontuacao);
         printf("\n  Nao ha como tirar a caixa da parede. ):\n");
